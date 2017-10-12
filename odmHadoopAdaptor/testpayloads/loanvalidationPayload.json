@@ -1,0 +1,1 @@
+{"Borrower":{"ssn":{"areaNumber":"123","groupCode":"45","serialNumber":"6789"},"birthDate":"1968-05-12T00:00:00","creditScore":500,"firstName":"John","lastName":"Doe","spouse":null,"yearlyIncome":100000,"zipCode":"91320"},"Loan":{"amount":185000,"loanToValue":0.7,"numberOfMonthlyPayments":72,"startDate":"2005-06-01T00:00:00"}, "current_time":"2005-06-01T00:00:00"}

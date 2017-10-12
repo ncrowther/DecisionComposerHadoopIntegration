@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:m0="http://www.ibm.com/rules/decisionservice/MortgageSegmentation/BetterRate/param">
+	<SOAP-ENV:Body>
+		<m:BetterRateRequest xmlns:m="http://www.ibm.com/rules/decisionservice/MortgageSegmentation/BetterRate">
+		<m:DecisionID>128</m:DecisionID>
+			<m0:account>
+				<account>
+					<accountReference>68768</accountReference>
+					<balanceLTV>120000</balanceLTV>
+					<band>P</band>
+					<buyToLetIndicator>N</buyToLetIndicator>
+					<consentToLetIndicator>N</consentToLetIndicator>
+					<dateOfBirth>2001-12-17T09:30:47.0Z</dateOfBirth>
+					<directDebit>Y</directDebit>
+					<elegible>Y</elegible>
+					<fexiIndicator>N</fexiIndicator>
+					<LTVGeneral>0.75</LTVGeneral>
+					<LTVIO>0.75</LTVIO>
+					<loans>
+						<balance>120000</balance>
+						<currentlyInSVR>String</currentlyInSVR>
+						<loanID>String</loanID>
+						<mortgageMonthlyRepayment>3.14159E0</mortgageMonthlyRepayment>
+						<OM01>String</OM01>
+						<OM02>String</OM02>
+						<OM03>String</OM03>
+						<OM04>String</OM04>
+						<OM05>String</OM05>
+						<OM06>String</OM06>
+						<OM07>String</OM07>
+						<OM08>String</OM08>
+						<OM09>String</OM09>
+						<OM10>String</OM10>
+						<remainingTerm>4096</remainingTerm>
+						<rollOffDate>2001-12-17T09:30:47.0Z</rollOffDate>
+						<segmentationFactor>String</segmentationFactor>
+					</loans>
+					<loansNumber>1</loansNumber>
+					<origen>String</origen>
+					<postCode>String</postCode>
+					<productEndDate>2001-12-17T09:30:47.0Z</productEndDate>
+					<riskLevel>1</riskLevel>
+					<segmentCode>String</segmentCode>
+				</account>
+			</m0:account>
+			<m:loanAmount>120000</m:loanAmount>
+		</m:BetterRateRequest>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
