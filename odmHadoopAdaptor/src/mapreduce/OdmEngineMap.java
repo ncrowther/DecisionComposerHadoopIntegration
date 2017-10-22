@@ -43,36 +43,7 @@ public class OdmEngineMap extends MapReduceBase implements
 		
 		LOG.info("Processing Row: " + jsonData);
 
-		Map<String, Object> params = new HashMap<String, Object>();
-
-		// Get the parameters of the rulest
-		JSONObject obj = new JSONObject(jsonData);
-
-		JSONArray param = obj.names();
-		
-		for (int x = 0; x < param.length(); x++) {
-			String paramName = param.getString(x);
-			// System.out.println("Name: " + name) ;
-
-			Object jsonObj = obj.get(paramName);
-
-			if (jsonObj instanceof JSONObject) {
-				JSONObject jsonParam = (JSONObject) jsonObj;
-				// System.out.println(name + ":" + jsonParam);
-
-				params.put(paramName, jsonParam.toString());
-			} else if (jsonObj instanceof String) {
-				String jsonParam = (String) jsonObj;
-				// System.out.println(name + ":" + jsonParam);
-
-				params.put(paramName, jsonParam);
-			} else {
-				throw new InvalidParameterException("Cannot process type:  "
-						+ jsonObj.getClass() + " in parameter " + paramName);
-			}
-		}
-
-		executeRuleEngine(params, output);
+		executeRuleEngine(jsonData, output);
 	}
 
 	/**
@@ -84,10 +55,10 @@ public class OdmEngineMap extends MapReduceBase implements
 	 *            the data sink
 	 * @throws IOException
 	 */
-	private void executeRuleEngine(Map<String, Object> params,
+	private void executeRuleEngine(String jsonData,
 			OutputCollector<LongWritable, Text> output) throws IOException {
 		
-		String response = runner.runRules(params);
+		String response = runner.runRules(jsonData);
 
 		if (response.length() > 0) {
 			outputText.set(response);

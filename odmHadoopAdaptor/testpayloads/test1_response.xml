@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ds="http://www.ibm.com/rules/decisionservice/MortgageSegmentation/Corinthians">
-	<soapenv:Body>
-		<CorinthiansResponse xmlns="http://www.ibm.com/rules/decisionservice/MortgageSegmentation/Corinthians">
-			<DecisionID xmlns="http://www.ibm.com/rules/decisionservice/MortgageSegmentation/Corinthians">128</DecisionID>
-			<betterDealsFormatted xmlns="http://www.ibm.com/rules/decisionservice/MortgageSegmentation/Corinthians">BetterDeal [currentBand=P, newBand=F, amount=17399.0, remainingLoan=328600.0, ltv=94.971375, betterRate=true]BetterDeal [currentBand=F, newBand=H, amount=51999.0, remainingLoan=294000.0, ltv=84.971344, betterRate=true]BetterDeal [currentBand=H, newBand=E, amount=69299.0, remainingLoan=276700.0, ltv=79.97133, betterRate=true]BetterDeal [currentBand=E, newBand=D, amount=86599.0, remainingLoan=259400.0, ltv=74.97131, betterRate=true]BetterDeal [currentBand=D, newBand=2, amount=103899.0, remainingLoan=242100.0, ltv=69.9713, betterRate=true]BetterDeal [currentBand=2, newBand=1, amount=138499.0, remainingLoan=207500.0, ltv=59.97127, betterRate=true]BetterDeal [currentBand=1, newBand=2, amount=196099.0, remainingLoan=149900.0, ltv=43.323822, betterRate=false]BetterDeal [currentBand=2, newBand=L, amount=286099.0, remainingLoan=59900.0, ltv=17.31219, betterRate=false]</betterDealsFormatted>
-		</CorinthiansResponse>
-	</soapenv:Body>
-</soapenv:Envelope>

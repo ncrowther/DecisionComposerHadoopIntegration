@@ -31,64 +31,32 @@ public class JsonTester {
 		//final String host = "localhost:9090";
 		
 		//final String rulesetPath = "/MortgageSegmentation/1.0/RealTime/1.0";
-		final String rulesetPath = "/LoanValidationRuleApp/1.0/LoanValidation/1.0";
+		//final String rulesetPath = "/LoanValidationRuleApp/1.0/LoanValidation/1.0";
 		//final String rulesetPath = "/CarRentalRuleApp/1.0/CarRental/1.0";
-		//final String rulesetPath = "/PNRCheckRuleApp/1.0/PNRCheck/1.0";
-		final String host = "brsv2-b49ea470.eu-gb.bluemix.net";
+		final String rulesetPath = "/PassengerNameRecordCheckRuleApp/1.0/PassengerNameRecordCheck/1.0";
+		final String host = "brsv2-b6dcdca2.ng.bluemix.net";
 		final String resUser = "resAdmin";
-		final String resPwd = "1k1r9501uzqyc";
+		final String resPwd = "u7ralgw4gqwm";
 		//final String resPwd = "resAdmin";
 		
 		//final String executionPwd = "resAdmin";
-		final String executionPwd = "Basic cmVzQWRtaW46MWsxcjk1MDF1enF5Yw==";
+		final String executionPwd = "Basic cmVzQWRtaW46dTdyYWxndzRncXdt";
 
 		final boolean https = true; // ****true for bluemix
 		//final boolean https = false; // ****true for bluemix
 
 	 	de.initialise(rulesetPath, host, resUser, resPwd, executionPwd, https);
-
-
-		//Account account = JsonTester.createAccount();
-		//String accountJson = account.objectToString();
-		//writeFile("D:\\ConsultancyProjects\\Santander\\Corinthians\\MortgageSegmentationWithCorininthians\\CorinthiansTestClient\\testpayloads\\test.json", accountJson);
-
 			
 		long executionStart = System.currentTimeMillis();
-		final int nbRecords = 1;
-		
-		String jsonData =readFile(".\\testpayloads\\loanvalidationPayload.json");
+		final int nbRecords = 1000;
+
+		String jsonData =readFile(".\\testpayloads\\pnr.json");
+		//String jsonData =readFile(".\\testpayloads\\loanvalidationPayload.json");
+		//String jsonData =readFile(".\\testpayloads\\carrental.json");
 		
 		for (int i = 0; i < nbRecords; i++) {
 			
-			Map<String, Object> params = new HashMap<String, Object>();
-
-			JSONObject obj = new JSONObject(jsonData);
-
-			JSONArray names = obj.names();
-			
-			for (int x = 0; x < names.length(); x++) {
-				String name = names.getString(x);
-			    //System.out.println("Name: " + name) ;
-			    
-				Object jsonObj =  obj.get(name);
-				
-				if (jsonObj instanceof JSONObject ) {
-					JSONObject jsonParam = (JSONObject)jsonObj;
-					System.out.println(name + ":" + jsonParam);
-					
-					params.put(name, jsonParam.toString());
-				}  
-				else if (jsonObj instanceof String ) {
-					String jsonParam = (String)jsonObj;
-					//System.out.println(name + ":" + jsonParam);
-					
-					params.put(name, jsonParam);
-				} else {
-					throw new InvalidParameterException("Cannot process type:  " + jsonObj.getClass() + " in parameter " + name);
-				}			
-			}
-			
-			String result = de.runRules(params);
+			String result = de.runRules(jsonData);
 			
 			writeFile(".\\testpayloads\\testresult.json", result);
 
@@ -159,7 +127,7 @@ public class JsonTester {
 	
 	public static void main(String[] args) throws Exception {
 
-		//IRuleEngineRunner restEngine = new RestEngineRunner();
+	    //IRuleEngineRunner restEngine = new RestEngineRunner();
 		//JsonTester.runRuleTest(restEngine);
 		
 		IRuleEngineRunner embeddedEngine = new DecisionEngineRunner();

@@ -3,7 +3,9 @@ package odmengine;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -12,6 +14,8 @@ import java.util.logging.Logger;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import parameters.ConversionException;
 import parameters.RuleParameter;
@@ -88,8 +92,37 @@ public class DecisionEngineRunner implements IRuleEngineRunner {
 	 * @see odmengine.IRuleEngineRunner#runRules(java.util.Map)
 	 */
 	@Override
-	public String runRules(Map<String, Object>params) {
+	public String runRules(String jsonData) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
 
+		JSONObject obj = new JSONObject(jsonData);
+
+		JSONArray names = obj.names();
+		
+		for (int x = 0; x < names.length(); x++) {
+			String name = names.getString(x);
+		    //System.out.println("Name: " + name) ;
+		    
+			Object jsonObj =  obj.get(name);
+			
+			if (jsonObj instanceof JSONObject ) {
+				JSONObject jsonParam = (JSONObject)jsonObj;
+				System.out.println(name + ":" + jsonParam);
+				
+				params.put(name, jsonParam.toString());
+			}  
+			else if (jsonObj instanceof String ) {
+				String jsonParam = (String)jsonObj;
+				System.out.println(name + ":" + jsonParam);
+				
+				params.put(name, jsonParam);
+			} else {
+				throw new InvalidParameterException("Cannot process type:  " + jsonObj.getClass() + " in parameter " + name);
+			}			
+		}
+		
+		//
 		String response = "";
 
 		try {			
@@ -122,11 +155,11 @@ public class DecisionEngineRunner implements IRuleEngineRunner {
 		// Create Input from ruleset signature.
 		for (RuleParameter sig : inSignature) {
 
-			//System.out.println("***Sig Name: " + sig.getName());
+			System.out.println("***Sig Name: " + sig.getName());
 			
 			String strValue = (String)params.get(sig.getName());
 			
-			//System.out.println("***Sig Val: " + strValue);
+			System.out.println("***Sig Val: " + strValue);
 			
 			input.setParameter(sig.getName(), sig.convert(strValue));
 		}

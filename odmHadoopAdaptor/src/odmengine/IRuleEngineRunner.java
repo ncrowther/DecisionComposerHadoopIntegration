@@ -13,7 +13,7 @@ public interface IRuleEngineRunner {
 	/**
 	 * Runs the engine with the provided ruleset archive
 	 */
-	public abstract String runRules(Map<String, Object> params);
+	public abstract String runRules(String jsonData);
 	
 
 }
