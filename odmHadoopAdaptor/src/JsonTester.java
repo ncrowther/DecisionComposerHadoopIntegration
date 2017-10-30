@@ -3,13 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.security.InvalidParameterException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import odmengine.DecisionEngineRunner;
 import odmengine.IRuleEngineRunner;
@@ -48,7 +42,7 @@ public class JsonTester {
 	 	de.initialise(rulesetPath, host, resUser, resPwd, executionPwd, https);
 			
 		long executionStart = System.currentTimeMillis();
-		final int nbRecords = 1000;
+		final int nbRecords = 1;
 
 		String jsonData =readFile(".\\testpayloads\\pnr.json");
 		//String jsonData =readFile(".\\testpayloads\\loanvalidationPayload.json");
@@ -58,7 +52,9 @@ public class JsonTester {
 			
 			String result = de.runRules(jsonData);
 			
-			writeFile(".\\testpayloads\\testresult.json", result);
+			if (result != null) {
+				writeFile(".\\testpayloads\\testresult.json", result);
+			}
 
 			System.out.println("***RESULT: " + result);
 		}
@@ -127,11 +123,11 @@ public class JsonTester {
 	
 	public static void main(String[] args) throws Exception {
 
-	    //IRuleEngineRunner restEngine = new RestEngineRunner();
-		//JsonTester.runRuleTest(restEngine);
-		
-		IRuleEngineRunner embeddedEngine = new DecisionEngineRunner();
-		JsonTester.runRuleTest(embeddedEngine);
+		IRuleEngineRunner restEngine = new RestEngineRunner();
+		JsonTester.runRuleTest(restEngine);
+
+		// IRuleEngineRunner embeddedEngine = new DecisionEngineRunner();
+		// JsonTester.runRuleTest(embeddedEngine);
 	}
 
 }

@@ -11,10 +11,13 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+
 public class RestEngineRunner implements IRuleEngineRunner {
 
 	private final HttpClient client = new DefaultHttpClient();
 	private HttpPost httpPost;
+	
+	private static final int EMPTY_PAYLOAD_SIZE = 80;
 	
 	private static final Logger LOG = Logger.getLogger(RestEngineRunner.class.getName());
 
@@ -42,9 +45,8 @@ public class RestEngineRunner implements IRuleEngineRunner {
 		httpPost = new HttpPost(restUrl);  
 		
 	    httpPost.addHeader("Authorization", executionPwd); 
-	    httpPost.addHeader("Content-Type", "application/json");
+	    httpPost.addHeader("Content-Type", "application/json");											    
 	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -73,13 +75,19 @@ public class RestEngineRunner implements IRuleEngineRunner {
 				line = rd.readLine();
 			}
 	
-		
 		} catch (Exception e) {
 			
 			LOG.log(Level.SEVERE, "Failed to read output parameters: " + e.toString());
 			e.printStackTrace();
 		}
 
-		return responseBuf.toString();
+		String response = responseBuf.toString();
+		// This is a heuristic that says if the length is less than a certain small size 
+		// then we consider the response empty and it is not written.
+		if (response.length() < EMPTY_PAYLOAD_SIZE) { 
+			return null;
+		} else {
+			return response;
+		}
 	}
 }

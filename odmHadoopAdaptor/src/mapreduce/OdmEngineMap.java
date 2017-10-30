@@ -1,9 +1,7 @@
 package mapreduce;
 
 import java.io.IOException;
-import java.security.InvalidParameterException;
-import java.util.HashMap;
-import java.util.Map;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,8 +16,6 @@ import org.apache.hadoop.mapred.MapReduceBase;
 import org.apache.hadoop.mapred.Mapper;
 import org.apache.hadoop.mapred.OutputCollector;
 import org.apache.hadoop.mapred.Reporter;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class OdmEngineMap extends MapReduceBase implements
 		Mapper<LongWritable, Text, LongWritable, Text> {

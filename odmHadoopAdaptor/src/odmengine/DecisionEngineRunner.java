@@ -108,13 +108,13 @@ public class DecisionEngineRunner implements IRuleEngineRunner {
 			
 			if (jsonObj instanceof JSONObject ) {
 				JSONObject jsonParam = (JSONObject)jsonObj;
-				System.out.println(name + ":" + jsonParam);
+				//System.out.println(name + ":" + jsonParam);
 				
 				params.put(name, jsonParam.toString());
 			}  
 			else if (jsonObj instanceof String ) {
 				String jsonParam = (String)jsonObj;
-				System.out.println(name + ":" + jsonParam);
+				//System.out.println(name + ":" + jsonParam);
 				
 				params.put(name, jsonParam);
 			} else {
@@ -155,11 +155,11 @@ public class DecisionEngineRunner implements IRuleEngineRunner {
 		// Create Input from ruleset signature.
 		for (RuleParameter sig : inSignature) {
 
-			System.out.println("***Sig Name: " + sig.getName());
+			//System.out.println("***Sig Name: " + sig.getName());
 			
 			String strValue = (String)params.get(sig.getName());
 			
-			System.out.println("***Sig Val: " + strValue);
+			//System.out.println("***Sig Val: " + strValue);
 			
 			input.setParameter(sig.getName(), sig.convert(strValue));
 		}
@@ -171,6 +171,8 @@ public class DecisionEngineRunner implements IRuleEngineRunner {
 	private String getOutput(EngineOutput output, Map<String, Object> params)
 			throws ConversionException {
 
+		boolean emptyOutput = true;
+		
 		StringBuffer strValue = new StringBuffer("{");
 
 		// Get outputs from ruleset signature and convert to string
@@ -183,6 +185,8 @@ public class DecisionEngineRunner implements IRuleEngineRunner {
 
 			if (value == null) {
 				value = "";
+			} else {
+				emptyOutput = false;
 			}
 			
 
@@ -192,7 +196,13 @@ public class DecisionEngineRunner implements IRuleEngineRunner {
 		}
 		
 		strValue.append("}");
-		return strValue.toString();
+		
+		if (emptyOutput) {
+			// If all output parameters are null then write back a null result to that it is not included in the output.
+			return null; 
+		} else {
+			return strValue.toString();
+		}
 	}
 	
 	public String objectToString(Object value) {

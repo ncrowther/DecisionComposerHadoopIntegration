@@ -20,8 +20,7 @@ hdfs dfs -rmdir output
 yarn jar  odmhadoop.jar mapreduce.OdmHadoopAdaptor \
              input \
              output \
-             passportNumber,customerName,dateOfBirth,flightNumber,flightDate,route \
-             /validatePnrApp/1.0/validatePnr/1.0 \
+             /PassengerNameRecordCheckRuleApp/1.0/PassengerNameRecordCheck/1.0 \ 
              brsv2-ae05805f.ng.bluemix.net \
              resAdmin \
              skn9o0rwqng2 \

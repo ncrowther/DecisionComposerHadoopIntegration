@@ -34,16 +34,6 @@ public class OdmHadoopAdaptor extends Configured implements Tool {
 			LOG.log(Level.SEVERE,"No Output Directory supplied");
 			System.exit(-1);
 		}
-
-		/*
-		if (args.length > ++argCounter) {
-			LOG.log(Level.INFO,"columns: " + args[argCounter]);
-			job.set("column.names", args[argCounter]);
-		} else {
-			LOG.log(Level.SEVERE,"No Columns defined");
-			System.exit(-1);
-		}
-		*/
 		
 		if (args.length > ++argCounter) {
 			LOG.log(Level.INFO,"rulesetVersion: " + args[argCounter]);	
@@ -105,8 +95,6 @@ public class OdmHadoopAdaptor extends Configured implements Tool {
 
 		job.setOutputKeyClass(LongWritable.class);
 		job.setOutputValueClass(Text.class);
-
-		//conf.setMapperClass(TradeMap.class);
 		
 		job.setMapperClass(OdmEngineMap.class);
 		// conf.setCombinerClass(Reduce.class);
