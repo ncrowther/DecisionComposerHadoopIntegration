@@ -56,7 +56,7 @@ public class OdmEngineMap extends MapReduceBase implements
 		
 		String response = runner.runRules(jsonData);
 
-		if (response.length() > 0) {
+		if (response != null && response.length() > 0) {
 			outputText.set(response);
 			output.collect(new LongWritable(outputLineCount++), outputText);
 		}

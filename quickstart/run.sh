@@ -20,11 +20,11 @@ hdfs dfs -rmdir output
 yarn jar  odmhadoop.jar mapreduce.OdmHadoopAdaptor \
              input \
              output \
-             /PassengerNameRecordCheckRuleApp/1.0/PassengerNameRecordCheck/1.0 \ 
-             brsv2-ae05805f.ng.bluemix.net \
+             /PassengerNameRecordCheckRuleApp/1.0/PassengerNameRecordCheck/1.0 \
+             brsv2-b6dcdca2.ng.bluemix.net \
              resAdmin \
-             skn9o0rwqng2 \
-             "Basic cmVzQWRtaW46c2tuOW8wcndxbmcy" \
+             u7ralgw4gqwm \
+             "Basic cmVzQWRtaW46dTdyYWxndzRncXdt" \
              true \
              true
 
