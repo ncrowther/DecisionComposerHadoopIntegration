@@ -8,7 +8,6 @@ hdfs dfs -rmdir output
 #yarn jar  odmhadoop.jar mapreduce.OdmHadoopAdaptor \
 #             inputDir [hdfs input directory]
 #             outputDir [hdfs output directory]
-#             column.names  [comma separated list of columns of csv data]
 #             rulesetVersion [ruleset path]
 #             host [host name of Res]
 #             resUser [Res user name]
@@ -20,7 +19,7 @@ hdfs dfs -rmdir output
 yarn jar  odmhadoop.jar mapreduce.OdmHadoopAdaptor \
              input \
              output \
-             /PassengerNameRecordCheckRuleApp/1.0/PassengerNameRecordCheck/1.0 \
+             /PNRCheckRuleApp/1.0/PNRCheck/1.0 \
              brsv2-b6dcdca2.ng.bluemix.net \
              resAdmin \
              u7ralgw4gqwm \
