@@ -13,7 +13,7 @@ hdfs dfs -rmdir output
 #             resUser [Res user name]
 #             resPwd [Res password]
 #             resExPwd [Res exec password ]
-#             blueMixMode [true|false]
+#             cloud mode [true|false]
 #             https [true|false]
 
 yarn jar  odmhadoop.jar mapreduce.OdmHadoopAdaptor \
