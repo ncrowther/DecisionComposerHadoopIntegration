@@ -20,10 +20,10 @@ yarn jar  odmhadoop.jar mapreduce.OdmHadoopAdaptor \
              input \
              output \
              /PNRCheckRuleApp/1.0/PNRCheck/1.0 \
-             brsv2-b6dcdca2.ng.bluemix.net \
+             brsv2-cc7fcf8f.ng.bluemix.net \
              resAdmin \
-             u7ralgw4gqwm \
-             "Basic cmVzQWRtaW46dTdyYWxndzRncXdt" \
+             1hrbg76fu9j6p \
+             "Basic cmVzQWRtaW46MWhyYmc3NmZ1OWo2cA==" \
              true \
              true
 
